@@ -56,7 +56,6 @@
 #include "AliDataFile.h"
 
 class AliAnalysisTaskRawJetWithEP;
-
 /// \cond CLASSIMP
 ClassImp(AliAnalysisTaskRawJetWithEP);
 /// \endcond
@@ -121,7 +120,6 @@ AliAnalysisTaskRawJetWithEP::AliAnalysisTaskRawJetWithEP() :
       psi2Tpc[i] = 0.;
       psi3Tpc[i] = 0.;
     }
-  
 }
 
 /**
@@ -197,7 +195,6 @@ AliAnalysisTaskRawJetWithEP::AliAnalysisTaskRawJetWithEP(const char *name):
  */
 AliAnalysisTaskRawJetWithEP::~AliAnalysisTaskRawJetWithEP()
 {
-  
   if(fOADBFile) {fOADBFile->Close(); fOADBFile = 0x0;}
   if(fCalibRefFile) {fCalibRefFile->Close(); fCalibRefFile = 0x0;}
   if(fCalibV0Ref)   {delete fCalibV0Ref;   fCalibV0Ref = 0x0;}
@@ -208,13 +205,13 @@ AliAnalysisTaskRawJetWithEP::~AliAnalysisTaskRawJetWithEP()
   if(hBkgTracks) {delete hBkgTracks; hBkgTracks = 0x0;}
 }
 
+
 /**
  * Performing run-independent initialization.
  * Here the histograms should be instantiated.
  */
 void AliAnalysisTaskRawJetWithEP::UserCreateOutputObjects()
 {
-  
   fOutputList = new TList();
   fOutputList->SetOwner(true);
 
@@ -538,7 +535,6 @@ void AliAnalysisTaskRawJetWithEP::AllocateEventPlaneHistograms()
   fHistManager.CreateTH2(histName, histtitle, 100, 0, 100, 100, 0, 50);
 
 }
-
 /*
  * This function allocates the histograms for basic tracking QA.
  * A set of histograms (pT, eta, phi, difference between kinematic properties
@@ -595,6 +591,7 @@ void AliAnalysisTaskRawJetWithEP::AllocateTrackHistograms()
   histtitle = TString::Format("%s;Sum of n tracks;events", histName.Data());
   if (fForceBeamType != kpp) fHistManager.CreateTH1(histName, histtitle, 500, 0, 5000);
   else fHistManager.CreateTH1(histName, histtitle, 200, 0, 200);
+
 }
 
 /*
@@ -776,7 +773,6 @@ void AliAnalysisTaskRawJetWithEP::AllocateJetHistograms()
     }
   }
 }
-
 
 /**
  * This function is executed automatically for the first event.
@@ -1113,6 +1109,7 @@ void AliAnalysisTaskRawJetWithEP::MeasureTpcEPQA(){
     histName = TString::Format("Hist nEvents");
     fHistManager.FillTH1(histName, 0.5);
     
+
     UInt_t count = 0;
     for(auto part : partCont->accepted()) {
       if (!part) continue;
@@ -1127,6 +1124,7 @@ void AliAnalysisTaskRawJetWithEP::MeasureTpcEPQA(){
       histName = TString::Format("%s/hTrackEta_%d", groupName.Data(), fCentBin);
       fHistManager.FillTH1(histName, part->Eta());
 
+
       if (partCont->GetLoadedClass()->InheritsFrom("AliVTrack")) {
         const AliVTrack* track = static_cast<const AliVTrack*>(part);
 
@@ -1139,6 +1137,7 @@ void AliAnalysisTaskRawJetWithEP::MeasureTpcEPQA(){
         // fHistManager.FillTH1(histName, phiMinusPsi2);
         // histName = TString::Format("%s/hTrackPhiMinusPsi3_%d", groupName.Data(), fCentBin);
         // fHistManager.FillTH1(histName, phiMinusPsi3);
+
       }
     }
     sumAcceptedTracks += count;
@@ -1841,7 +1840,6 @@ AliAnalysisTaskRawJetWithEP * AliAnalysisTaskRawJetWithEP::AddTaskRawJetWithEP(
   // Final settings, pass to manager and set the containers
   //-------------------------------------------------------
   mgr->AddTask(rawJetTask);
-  
   // Create containers for input/output
   AliAnalysisDataContainer *cinput1  = mgr->GetCommonInputContainer()  ;
   TString contname(name);
@@ -1854,16 +1852,4 @@ AliAnalysisTaskRawJetWithEP * AliAnalysisTaskRawJetWithEP::AddTaskRawJetWithEP(
 
   return rawJetTask;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 

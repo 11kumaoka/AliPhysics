@@ -1,4 +1,3 @@
-
 #ifndef AliAnalysisTaskRawJetWithEP_H
 #define AliAnalysisTaskRawJetWithEP_H
 /**
@@ -6,6 +5,7 @@
  * \brief Declaration of class AliAnalysisTaskEmcalJetSample
  *
  * In this header file the class AliAnalysisTaskEmcalJetSample is declared.
+
  * This is a sample task that shows how to write a simple user analysis task
  * using the EMCal jet framework. It is also used to do automatic benchmark
  * tests of the software.
@@ -271,3 +271,4 @@ class AliAnalysisTaskRawJetWithEP : public AliAnalysisTaskEmcalJet {
   // ### private ###############################################################
 };
 #endif
+
